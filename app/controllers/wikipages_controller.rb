@@ -25,7 +25,7 @@ class WikipagesController < ApplicationController
   # POST /wikipages.json
   def create
     @wikipage = Wikipage.new(wikipage_params)
-
+    save_version
     respond_to do |format|
       if @wikipage.save
         format.html { redirect_to @wikipage, notice: 'Wikipage was successfully created.' }
@@ -39,9 +39,10 @@ class WikipagesController < ApplicationController
 
   # PATCH/PUT /wikipages/1
   # PATCH/PUT /wikipages/1.json
-  def update
+  def update   
     respond_to do |format|
       if @wikipage.update(wikipage_params)
+        save_version
         format.html { redirect_to @wikipage, notice: 'Wikipage was successfully updated.' }
         format.json { render :show, status: :ok, location: @wikipage }
       else
@@ -70,5 +71,10 @@ class WikipagesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def wikipage_params
       params.require(:wikipage).permit(:title, :body)
+    end
+
+    def save_version
+      @version = @wikipage.versions.new(number: Time.now.to_i, corpus: @wikipage.title + @wikipage.body)
+      @version.save
     end
 end

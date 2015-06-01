@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150601032643) do
+ActiveRecord::Schema.define(version: 20150601060001) do
+
+  create_table "versions", force: :cascade do |t|
+    t.integer  "number"
+    t.text     "corpus"
+    t.integer  "wikipage_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "versions", ["wikipage_id"], name: "index_versions_on_wikipage_id"
 
   create_table "wikipages", force: :cascade do |t|
     t.string   "title"

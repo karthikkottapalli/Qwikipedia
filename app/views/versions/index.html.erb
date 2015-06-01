@@ -1,0 +1,35 @@
+<style>
+div {
+    background-color: white;
+    display: inline-block;
+    width: 10px;
+    padding: 25px;
+}
+</style>
+
+<h1>Version History</h1>
+------------------------------------------------------------------------------------------------------------------------------------------
+<p><h2>Compare Versions:</h2></p>
+<% versio = 0 %>
+<%= form_tag(method: "get") do %>
+<div>
+  <% @versions.each do |version| %>
+  <% versio = versio + 1 %>
+    <p><%= radio_button_tag "1", version.id %> <%= link_to versio, wikipage_version_path(@wikipage, version) %></p>
+  <% end %>
+</div> 
+<div> 
+  <% versio = 0 %>
+  <% @versions.each do |version| %>
+  <% versio = versio + 1 %>
+    <p><%= radio_button_tag "2", version.id %> <%= link_to versio, wikipage_version_path(@wikipage, version) %></p>
+  <% end %>
+  <%= submit_tag("Find Diff") %>
+<% end %>
+</div>
+
+
+<h2>Diff:</h2>
+<% if !@diff.nil? %>
+  <p><%= @diff %></p>
+<% end %>

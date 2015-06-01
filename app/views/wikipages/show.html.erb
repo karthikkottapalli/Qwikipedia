@@ -15,7 +15,7 @@ li {
 <ul>
   <li><u><b>Read</b></u></li> |
   <li><%= link_to 'Edit', edit_wikipage_path(@wikipage) %></li> |
-  <li><%= link_to 'View History', wikipages_path %></li> |
+  <li><%= link_to 'View History', wikipage_versions_path(@wikipage) %></li> |
   <li><%= link_to 'Qwiki Home', wikipages_path %></li>  
 </ul>
 
