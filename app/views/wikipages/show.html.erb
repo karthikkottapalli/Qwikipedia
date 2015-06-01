@@ -1,0 +1,31 @@
+<style>
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    float: right;
+}
+
+li {
+    display: inline;
+}
+</style>
+
+
+<ul>
+  <li><u><b>Read</b></u></li> |
+  <li><%= link_to 'Edit', edit_wikipage_path(@wikipage) %></li> |
+  <li><%= link_to 'View History', wikipages_path %></li> |
+  <li><%= link_to 'Qwiki Home', wikipages_path %></li>  
+</ul>
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <h1><%= @wikipage.title %></h1>
+</p>
+
+<p>
+  <%= @wikipage.body %>
+</p>
+

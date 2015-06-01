@@ -1,0 +1,19 @@
+<h1> Welcome to Qwikipedia </h1>
+<style>
+div {
+    background-color: white;
+    display: inline-block;
+    width: 400px;
+    padding: 25px;
+}
+</style>
+
+  <% @wikipages.each do |wikipage| %>
+    <div>
+      <b><%= link_to wikipage.title, wikipage %></b>
+      <p><%= truncate(wikipage.body, :length => 300) %></p>
+    </div>
+  <% end %> 
+<p>  
+  <%= link_to 'New Wikipage', new_wikipage_path %>
+</p>
